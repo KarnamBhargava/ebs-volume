@@ -9,6 +9,7 @@ variable "availabilityZone" {
 
 variable "size" {
   type = number
+  default = 500
 }
 
 variable "encryption" {
