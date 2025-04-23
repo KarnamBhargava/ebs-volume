@@ -20,9 +20,7 @@ resource "aws_ebs_volume" "backstage-ebs" {
   availability_zone = var.availabilityZone
   size              = var.size
   encrypted = var.encryption
-  iops = var.iops
   type = var.volumneType
-  throughput = var.throughPut
 
   tags = {
     Name = "Backstage-interns-project"
