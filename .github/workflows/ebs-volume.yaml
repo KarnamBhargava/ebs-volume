@@ -82,5 +82,6 @@ jobs:
         run: |
           terraform destroy -auto-approve \
             -var region=${{ github.event.inputs.region }} \
+            -var availabilityZone=${{ github.event.inputs.availabilityZone }} \
             -var volumeId=${{ github.event.inputs.volumeId }}
 
