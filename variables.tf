@@ -22,7 +22,4 @@ variable "volumeType" {
   default = "gp3"
 }
 
-variable "volumeId" {
-  description = "ID of the EBS volume"
-  type        = string
-}
+
