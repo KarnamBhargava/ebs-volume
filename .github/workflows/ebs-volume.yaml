@@ -36,6 +36,10 @@ on:
         required: false
         type: string
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   manage-ebs:
     runs-on: ubuntu-latest
@@ -44,8 +48,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Assume AWS Role using OIDC
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+
+          role-to-assume: arn:aws:iam::730335384723:role/backstage_interns_project
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ github.event.inputs.region }}
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        
 
       - name: Terraform Init
         run: terraform init
