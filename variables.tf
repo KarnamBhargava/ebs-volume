@@ -17,7 +17,7 @@ variable "encryption" {
   default = false
 }
 
-variable "volumneType" {
+variable "volumeType" {
   type = string
   default = "gp3"
 }
