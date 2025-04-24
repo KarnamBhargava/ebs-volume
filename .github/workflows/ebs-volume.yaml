@@ -2,10 +2,6 @@ name: ebs-volume
 on:
   workflow_dispatch:
     inputs:
-      action:
-        description: "Action to perform (create or delete)"
-        required: true
-        type: string
 
       region:
         description: "AWS Region"
@@ -31,10 +27,6 @@ on:
         required: false
         type: boolean
 
-      volumeId:
-        description: "EBS Volume ID (only for delete)"
-        required: false
-        type: string
 
 permissions:
   id-token: write
@@ -64,11 +56,9 @@ jobs:
         run: terraform init
 
       - name: Terraform Validate
-        if: ${{ github.event.inputs.action == 'create' }}
         run: terraform validate
 
       - name: Terraform Apply
-        if: ${{ github.event.inputs.action == 'create' }}
         run: |
           terraform apply -auto-approve \
             -var region=${{ github.event.inputs.region }} \
@@ -77,11 +67,4 @@ jobs:
             -var volumeType=${{ github.event.inputs.volumeType }} \
             -var encryption=${{ github.event.inputs.encryption }}
 
-      - name: Terraform Destroy
-        if: ${{ github.event.inputs.action == 'delete' }}
-        run: |
-          terraform destroy -auto-approve \
-            -var region=${{ github.event.inputs.region }} \
-            -var availabilityZone=${{ github.event.inputs.availabilityZone }} \
-            -var volumeId=${{ github.event.inputs.volumeId }}
-
+      
