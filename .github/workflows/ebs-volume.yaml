@@ -20,7 +20,7 @@ on:
       size:
         description: "Volume Size in GiB (only for create)"
         required: false
-        type: string
+        type: number
 
       volumeType:
         description: "Volume Type (only for create)"
