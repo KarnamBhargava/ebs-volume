@@ -29,7 +29,7 @@ on:
       encryption:
         description: "Enable Encryption (true/false, only for create)"
         required: false
-        type: string
+        type: boolean
 
       volumeId:
         description: "EBS Volume ID (only for delete)"
