@@ -1,5 +1,4 @@
 name: ebs-volume
-
 on:
   workflow_dispatch:
     inputs:
